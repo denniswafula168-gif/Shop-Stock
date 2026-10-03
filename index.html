@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop Stock</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#1f4d3a">
+<link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+<div id="appView" hidden>
+<header>
+  <div class="top"><h1>My stock</h1><div class="topbtns"><button id="alertBtn" class="alertbtn" hidden></button><button id="signOutBtn" class="signout">Sign out</button></div></div>
+  <input id="search" type="search" placeholder="Search items, e.g. unga" autocomplete="off">
+</header>
+
+<main>
+  <p id="status" class="status" hidden></p>
+  <p id="message" class="message"></p>
+  <ul id="items"></ul>
+</main>
+
+<button id="addBtn" class="fab">+ Add item</button>
+</div>
+
+<div id="authView" class="auth" hidden>
+  <h1>Shop Stock</h1>
+  <p>Sign in to see your stock.</p>
+  <label>Email
+    <input id="aEmail" type="email" autocomplete="email">
+  </label>
+  <label>Password (at least 6 characters)
+    <input id="aPass" type="password" autocomplete="current-password">
+  </label>
+  <p id="authMsg" class="message"></p>
+  <div class="row">
+    <button type="button" id="signUpBtn" class="plain">Create account</button>
+    <button type="button" id="signInBtn" class="primary">Sign in</button>
+  </div>
+</div>
+
+<dialog id="addDialog">
+  <form id="addForm" method="dialog">
+    <h2>Add new item</h2>
+    <label>Name (required)
+      <input id="fName" required placeholder="e.g. Unga">
+    </label>
+    <label>Size
+      <input id="fSize" placeholder="e.g. Big or Small">
+    </label>
+    <label>Counted in
+      <input id="fUnit" placeholder="e.g. kg, packets, pieces">
+    </label>
+    <label>Warn me when stock reaches
+      <input id="fLow" type="number" min="0" step="any" placeholder="e.g. 5">
+    </label>
+    <div class="row">
+      <button type="button" id="cancelBtn" class="plain">Cancel</button>
+      <button type="submit" class="primary">Save item</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="stockDialog">
+  <form id="stockForm" method="dialog">
+    <h2 id="stockTitle">Restock</h2>
+    <label>How much did you add? (required)
+      <input id="sQty" type="number" min="0.01" step="any" required placeholder="e.g. 50">
+    </label>
+    <label>Expiry date (optional)
+      <input id="sExp" type="date">
+    </label>
+    <div class="row">
+      <button type="button" id="stockCancel" class="plain">Cancel</button>
+      <button type="submit" class="primary">Save stock</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="alertDialog">
+  <h2>Heads up</h2>
+  <div id="alertBody"></div>
+  <div class="row"><button type="button" id="alertClose" class="primary">OK</button></div>
+</dialog>
+
+<dialog id="saleDialog">
+  <form id="saleForm" method="dialog">
+    <h2 id="saleTitle">Sell</h2>
+    <label>How much was sold? (required)
+      <input id="qSold" type="number" min="0.01" step="any" required placeholder="e.g. 30">
+    </label>
+    <div class="row">
+      <button type="button" id="saleCancel" class="plain">Cancel</button>
+      <button type="submit" class="primary">Record sale</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="supabase.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
